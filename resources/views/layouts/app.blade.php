@@ -13,7 +13,7 @@
         <a href="{{ route("todoapp.index") }}">todoapp</a>
         <a href="{{ route("todoapp.settings") }}">settings</a>
         <a href="{{ route("blog.index") }}">blog</a>
-        <a href="{{ route("home.contact") }}">contact</a>
+        <a href="{{ route("contact") }}">contact</a>
     </nav>
     <main>
         @yield("content")

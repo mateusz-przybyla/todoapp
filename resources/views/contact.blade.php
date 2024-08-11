@@ -2,7 +2,7 @@
 @section("title", "Contact us")
 
 @section("content")
-<form method="post">
+<form method="POST">
     <label for="name">Name:</label><br>
     <input type="text" id="name" name="name"><br>
     <label for="email">Email:</label><br>

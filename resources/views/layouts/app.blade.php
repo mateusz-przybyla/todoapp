@@ -11,7 +11,6 @@
     <nav>
         <a href="{{ route("home.index") }}">home</a>
         <a href="{{ route("todoapp.index") }}">todoapp</a>
-        <a href="{{ route("todoapp.settings") }}">settings</a>
         <a href="{{ route("blog.index") }}">blog</a>
         <a href="{{ route("contact") }}">contact</a>
     </nav>

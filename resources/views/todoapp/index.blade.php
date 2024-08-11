@@ -9,12 +9,20 @@
 
 <ul>
     @foreach ($tasks as $task)
-        <li>{{ $task->content }}</li>
-        <form method="POST" action="{{ route("todoapp.destroy", $task->id) }}">
-            @csrf
-            @method("DELETE")
-            <button type="submit">delete</button>
-        </form>
+        <li>
+            <form method="POST" action="{{ route("todoapp.update", $task->id) }}">
+                @csrf
+                @method("PUT")
+                <input type="text" name="content" value="{{ $task->content }}">
+                <button type="submit">edit</button>
+            </form>
+
+            <form method="POST" action="{{ route("todoapp.destroy", $task->id) }}">
+                @csrf
+                @method("DELETE")
+                <button type="submit">delete</button>
+            </form>
+        </li>
     @endforeach
 </ul>
 

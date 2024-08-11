@@ -2,9 +2,21 @@
 @section("title", "To-Do List")
 
 @section("content")
-<form>
+
+@isset($x)
+    {{ $x }}
+@endisset
+
+<ul>
+    @foreach ($tasks as $task)
+        <li>{{ $task['content'] }}</li>
+    @endforeach
+</ul>
+
+<form method="POST">
+    @csrf
     <div>
-        <input type="text" placeholder="Enter a to-do item" required>
+        <input type="text" name="content" placeholder="Enter a to-do item">
         <input type="submit" value="Add">
     </div>
 </form>

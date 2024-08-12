@@ -39,4 +39,13 @@ class TodoAppController extends Controller
 
         return redirect()->route("todoapp.index");
     }
+
+    public function complete(Task $task)
+    {
+        $task->completed = 1;
+
+        $task->save();
+
+        return redirect()->route("todoapp.index");
+    }
 }

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Log;
 
 class TodoAppController extends Controller
 {
+    protected $validationRules = ["content" => "required"];
+
     public function index()
     {
         return view('todoapp.index')->with("tasks", Task::all());
@@ -17,7 +19,9 @@ class TodoAppController extends Controller
     {
         //Log::info($request);
 
-        Task::create($request->all());
+        $validatedData = $request->validate($this->validationRules);
+
+        Task::create($validatedData);
 
         return redirect()->route("todoapp.index");
     }
@@ -31,7 +35,9 @@ class TodoAppController extends Controller
 
     public function update(Task $task, Request $request)
     {
-        $task->update($request->all());
+        $validatedData = $request->validate($this->validationRules);
+
+        $task->update($validatedData);
 
         return redirect()->route("todoapp.index");
     }

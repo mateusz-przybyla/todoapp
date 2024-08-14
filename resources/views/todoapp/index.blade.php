@@ -68,6 +68,9 @@
     <div>
         <input type="text" name="content" placeholder="Enter a to-do item">
         <input type="submit" value="Add">
+        @error("content")
+            <span style="color: red;">{{ $message }}</span>
+        @enderror
     </div>
 </form>
 @endsection

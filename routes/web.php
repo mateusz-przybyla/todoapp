@@ -7,11 +7,13 @@ Route::get('/', function () {
     return view('index');
 })->name("home.index");
 
-Route::get('/todoapp', [TodoAppController::class, 'index'])->name("todoapp.index");
-Route::post('/todoapp', [TodoAppController::class, 'store'])->name("todoapp.store");
-Route::delete('/todoapp/{task}', [TodoAppController::class, 'destroy'])->name("todoapp.destroy");
-Route::put('/todoapp/update/{task}', [TodoAppController::class, 'update'])->name("todoapp.update");
-Route::put('/todoapp/complete/{task}', [TodoAppController::class, 'complete'])->name("todoapp.complete");
+Route::prefix('todoapp')->name('todoapp.')->controller(TodoAppController::class)->group(function(){
+    Route::get('/', "index")->name("index");
+    Route::post('/', "store")->name("store");
+    Route::delete('/{task}', "destroy")->name("destroy");
+    Route::put('/update/{task}', "update")->name("update");
+    Route::put('/complete/{task}', "complete")->name("complete");
+});
 
 Route::get('/blog', [BlogController::class, 'index'])->name("blog.index");
 

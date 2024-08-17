@@ -9,7 +9,6 @@
     @vite('resources/js/app.js')
 </head>
 <body class="position-relative minh-100">
-    <div>
     <header>
         <div class="container">
             <nav class="navbar navbar-expand-md rounded-bottom-3 nav-color py-md-0" aria-label="TodoApp navbar">
@@ -39,7 +38,12 @@
         </div>
     </header>
     <main class="pb-60">
-        @yield("content")
+        <div class="container">
+            <div class="d-flex justify-content-center rounded my-3 brand-color fs-4 fw-bold">
+                To-Do App
+            </div>
+            @yield("content")
+        </div>
     </main>
     <footer class="position-absolute w-100 bottom-0">
         <div class="container">

@@ -13,15 +13,19 @@
 }
 
 .nav-color{
-    background-color: #A6B37D;
+    background-color: #81A263;
 }
 
-.footer-color{
-    background-color: #B99470;
+.brand-color{
+    border: 2px solid #E7D37F;
 }
 
 .main-color{
-    background-color: #CBE2B5;
+    background-color: #E7D37F;
+}
+
+.footer-color{
+    background-color: #FD9B63;
 }
 
 .pb-60{
@@ -35,4 +39,8 @@
 .i{
     font-size: 16px;
     font-weight: 700;
+}
+
+.error{
+    color: red;
 }

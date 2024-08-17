@@ -21,16 +21,16 @@
                     <div class="collapse navbar-collapse justify-content-md-center" id="todo-navbar">
                         <ul class="navbar-nav">
                             <li class="nav-item px-md-2">
-                                <a class="nav-link" href="{{ route("home.index") }}">Home</a>
+                                <a class="nav-link fw-semibold" href="{{ route("home.index") }}">Home</a>
                             </li>
                             <li class="nav-item px-md-2">
-                                <a class="nav-link" href="{{ route("todoapp.index") }}">To-do list</a>
+                                <a class="nav-link fw-semibold" href="{{ route("todoapp.index") }}">To-do list</a>
                             </li>
                             <li class="nav-item px-md-2">
-                                <a class="nav-link" href="{{ route("blog.index") }}">Blog</a>
+                                <a class="nav-link fw-semibold" href="{{ route("blog.index") }}">Blog</a>
                             </li>
                             <li class="nav-item px-md-2">
-                                <a class="nav-link" href="{{ route("contact") }}">Contact</a>
+                                <a class="nav-link fw-semibold" href="{{ route("contact") }}">Contact</a>
                             </li>
                         </ul>
                     </div>
@@ -38,10 +38,8 @@
             </nav>
         </div>
     </header>
-    <main class="pb-60 mt-5">
-        <div class="container">
-            @yield("content")
-        </div>
+    <main class="pb-60">
+        @yield("content")
     </main>
     <footer class="position-absolute w-100 bottom-0">
         <div class="container">

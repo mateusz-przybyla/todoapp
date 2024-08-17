@@ -6,22 +6,50 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield("title")</title>
 
-    @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 </head>
-<body>
-    <h1>@yield("title")</h1>
-    <nav>
-        <a href="{{ route("home.index") }}">home</a>
-        <a href="{{ route("todoapp.index") }}">todoapp</a>
-        <a href="{{ route("blog.index") }}">blog</a>
-        <a href="{{ route("contact") }}">contact</a>
-    </nav>
-    <main>
-        @yield("content")
+<body class="position-relative minh-100">
+    <div>
+    <header>
+        <div class="container">
+            <nav class="navbar navbar-expand-md rounded-bottom-3 nav-color py-md-0" aria-label="TodoApp navbar">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#todo-navbar" aria-controls="todo-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+            
+                    <div class="collapse navbar-collapse justify-content-md-center" id="todo-navbar">
+                        <ul class="navbar-nav">
+                            <li class="nav-item px-md-2">
+                                <a class="nav-link" href="{{ route("home.index") }}">Home</a>
+                            </li>
+                            <li class="nav-item px-md-2">
+                                <a class="nav-link" href="{{ route("todoapp.index") }}">To-do list</a>
+                            </li>
+                            <li class="nav-item px-md-2">
+                                <a class="nav-link" href="{{ route("blog.index") }}">Blog</a>
+                            </li>
+                            <li class="nav-item px-md-2">
+                                <a class="nav-link" href="{{ route("contact") }}">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main class="pb-60 mt-5">
+        <div class="container">
+            @yield("content")
+        </div>
     </main>
-    <footer>
-        <p>todoapp 2024</p>
+    <footer class="position-absolute w-100 bottom-0">
+        <div class="container">
+            <div class="d-flex justify-content-center py-2 border-top footer-color rounded-top-3">
+                <p class="my-0 text-body-secondary">© 2024 todoapp</p>
+            </div>
+          </div>
     </footer>
+</div>
 </body>
 </html>

@@ -19,3 +19,6 @@ Route::prefix('todoapp')->name('todoapp.')->controller(TodoAppController::class)
 Route::get('/blog', [BlogController::class, 'index'])->name("blog.index");
 
 Route::get('/contact', [ContactController::class, 'index'])->name("contact");
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

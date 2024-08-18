@@ -16,9 +16,13 @@ Route::prefix('todoapp')->name('todoapp.')->controller(TodoAppController::class)
     Route::put('/complete/{task}', "complete")->name("complete");
 });
 
-Route::get('/blog', [BlogController::class, 'index'])->name("blog.index");
+Route::prefix('blog')->name('blog.')->controller(BlogController::class)->group(function(){
+    Route::get('/', "index")->name("index");
+    Route::post('/', "store")->name("store");
+    Route::delete('/{post}', "destroy")->middleware(LogIP::class)->name("destroy");
+    Route::put('/update/{post}', "update")->name("update");
+});
 
 Route::get('/contact', [ContactController::class, 'index'])->name("contact");
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

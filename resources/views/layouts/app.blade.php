@@ -20,16 +20,16 @@
                     <div class="collapse navbar-collapse justify-content-md-center" id="todo-navbar">
                         <ul class="navbar-nav">
                             <li class="nav-item px-md-2">
-                                <a class="nav-link fw-semibold" href="{{ route("home.index") }}">Home</a>
+                                <a class="nav-link fw-semibold {{ Request::routeIs("home.index") ? "active" : "" }}" href="{{ route("home.index") }}">Home</a>
                             </li>
                             <li class="nav-item px-md-2">
-                                <a class="nav-link fw-semibold" href="{{ route("todoapp.index") }}">To-do list</a>
+                                <a class="nav-link fw-semibold {{ Request::routeIs("todoapp.index") ? "active" : "" }}" href="{{ route("todoapp.index") }}">To-do list</a>
                             </li>
                             <li class="nav-item px-md-2">
-                                <a class="nav-link fw-semibold" href="{{ route("blog.index") }}">Blog</a>
+                                <a class="nav-link fw-semibold {{ Request::routeIs("blog.index") ? "active" : "" }}" href="{{ route("blog.index") }}">Blog</a>
                             </li>
                             <li class="nav-item px-md-2">
-                                <a class="nav-link fw-semibold" href="{{ route("contact") }}">Contact</a>
+                                <a class="nav-link fw-semibold {{ Request::routeIs("contact") ? "active" : "" }}" href="{{ route("contact") }}">Contact</a>
                             </li>
                         </ul>
                     </div>

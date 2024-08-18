@@ -41,5 +41,7 @@
 			</li>
         @endforeach
     </ul>
+
+	{{ $posts->links() }}
 </div>
 @endsection

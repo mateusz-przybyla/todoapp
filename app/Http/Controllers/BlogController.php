@@ -11,10 +11,12 @@ class BlogController extends Controller
     protected $validationRules = ["description" => "required", "post" => "required"];
 
     public function index(){
-        return view('blog.index')->with("posts", Post::all());
+        $posts = Post::latest()->paginate(3);
+
+        return view('blog.index', compact('posts'));
     }
 
-    public function store(Request $request, Post $post)
+    public function store(Request $request)
     {
         //Log::info($request);
 

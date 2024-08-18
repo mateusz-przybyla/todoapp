@@ -15,7 +15,7 @@
             <input type="submit" value="Add" class="btn btn-primary">
         </div>
         @error("content")
-                <span class="error">{{ $message }}</span>
+            <span class="error">{{ $message }}</span>
         @enderror
     </form>
     

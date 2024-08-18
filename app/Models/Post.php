@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Task extends Model
+class Post extends Model
 {
-    protected $fillable = ['content', 'completed'];
+    protected $fillable = ['description', 'post'];
 }

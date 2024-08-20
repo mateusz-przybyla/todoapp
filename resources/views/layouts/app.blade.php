@@ -21,7 +21,7 @@
                         <ul class="navbar-nav">
                             @guest
                             <li class="nav-item px-md-2">
-                                <a class="nav-link fw-semibold {{ Request::routeIs("home") ? "active" : "" }}" href="{{ route("home") }}">Home</a>
+                                <a class="nav-link fw-semibold {{ Request::routeIs("welcome") ? "active" : "" }}" href="{{ route("welcome") }}">Welcome</a>
                             </li>
                             <li class="nav-item px-md-2">
                                 <a class="nav-link fw-semibold {{ Request::routeIs("register") ? "active" : "" }}" href="{{ route("register") }}">Register</a>
@@ -36,7 +36,7 @@
 
                             @auth
                             <li class="nav-item px-md-2">
-                                <a class="nav-link fw-semibold {{ Request::routeIs("welcome") ? "active" : "" }}" href="{{ route("welcome") }}">Welcome</a>
+                                <a class="nav-link fw-semibold {{ Request::routeIs("home") ? "active" : "" }}" href="{{ route("home") }}">Home</a>
                             </li>
                             <li class="nav-item px-md-2">
                                 <a class="nav-link fw-semibold {{ Request::routeIs("todoapp.index") ? "active" : "" }}" href="{{ route("todoapp.index") }}">To-do list</a>

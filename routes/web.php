@@ -7,13 +7,13 @@ use App\Http\Middleware\LogIP;
 
 Route::get('/', function () {
     return view('index');
-})->name("home");
+})->name("welcome")->middleware('guest');
 
-Route::get('/welcome', function () {
-    return view('welcome');
-})->name("welcome");
+Route::get('/home', function () {
+    return view('home');
+})->name("home")->middleware('auth');
 
-Route::prefix('todoapp')->name('todoapp.')->controller(TodoAppController::class)->group(function(){
+Route::prefix('todoapp')->name('todoapp.')->controller(TodoAppController::class)->middleware('auth')->group(function(){
     Route::get('/', "index")->name("index");
     Route::post('/', "store")->name("store");
     Route::delete('/{task}', "destroy")->middleware(LogIP::class)->name("destroy");
@@ -21,19 +21,19 @@ Route::prefix('todoapp')->name('todoapp.')->controller(TodoAppController::class)
     Route::put('/complete/{task}', "complete")->name("complete");
 });
 
-Route::prefix('blog')->name('blog.')->controller(BlogController::class)->group(function(){
+Route::prefix('blog')->name('blog.')->controller(BlogController::class)->middleware('auth')->group(function(){
     Route::get('/', "index")->name("index");
     Route::post('/', "store")->name("store");
     Route::delete('/{post}', "destroy")->middleware(LogIP::class)->name("destroy");
 });
 
-Route::get('/contact', [ContactController::class, "index"])->name("contact");
-Route::post('/contact', [ContactController::class, "store"]);
+Route::get('/contact', [ContactController::class, "index"])->name("contact")->middleware('guest');
+Route::post('/contact', [ContactController::class, "store"])->middleware('guest');
 
-Route::get('/register', [RegisterController::class, "showRegistrationForm"])->name("register");
+Route::get('/register', [RegisterController::class, "showRegistrationForm"])->name("register")->middleware('guest');
 Route::post('/register', [RegisterController::class, "register"]);
 
-Route::get('/login', [LoginController::class, "showLoginForm"])->name("login");
+Route::get('/login', [LoginController::class, "showLoginForm"])->name("login")->middleware('guest');
 Route::post('/login', [LoginController::class, "login"]);
 
-Route::get('/logout', [LoginController::class, "logout"])->name("logout");
+Route::get('/logout', [LoginController::class, "logout"])->name("logout")->middleware('auth');

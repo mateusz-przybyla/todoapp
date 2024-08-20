@@ -20,9 +20,7 @@ Route::prefix('blog')->name('blog.')->controller(BlogController::class)->group(f
     Route::get('/', "index")->name("index");
     Route::post('/', "store")->name("store");
     Route::delete('/{post}', "destroy")->middleware(LogIP::class)->name("destroy");
-    Route::put('/update/{post}', "update")->name("update");
 });
 
-Route::get('/contact', [ContactController::class, 'index'])->name("contact");
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/contact', [ContactController::class, "index"])->name("contact");
+Route::post('/contact', [ContactController::class, "store"])->name("store");

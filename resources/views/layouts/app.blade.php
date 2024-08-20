@@ -19,18 +19,35 @@
             
                     <div class="collapse navbar-collapse justify-content-md-center" id="todo-navbar">
                         <ul class="navbar-nav">
+                            @guest
                             <li class="nav-item px-md-2">
-                                <a class="nav-link fw-semibold {{ Request::routeIs("home.index") ? "active" : "" }}" href="{{ route("home.index") }}">Home</a>
+                                <a class="nav-link fw-semibold {{ Request::routeIs("home") ? "active" : "" }}" href="{{ route("home") }}">Home</a>
+                            </li>
+                            <li class="nav-item px-md-2">
+                                <a class="nav-link fw-semibold {{ Request::routeIs("register") ? "active" : "" }}" href="{{ route("register") }}">Register</a>
+                            </li>
+                            <li class="nav-item px-md-2">
+                                <a class="nav-link fw-semibold {{ Request::routeIs("login") ? "active" : "" }}" href="{{ route("login") }}">Login</a>
+                            </li>
+                            <li class="nav-item px-md-2">
+                                <a class="nav-link fw-semibold {{ Request::routeIs("contact") ? "active" : "" }}" href="{{ route("contact") }}">Contact</a>
+                            </li>
+                            @endguest
+
+                            @auth
+                            <li class="nav-item px-md-2">
+                                <a class="nav-link fw-semibold {{ Request::routeIs("welcome") ? "active" : "" }}" href="{{ route("welcome") }}">Welcome</a>
                             </li>
                             <li class="nav-item px-md-2">
                                 <a class="nav-link fw-semibold {{ Request::routeIs("todoapp.index") ? "active" : "" }}" href="{{ route("todoapp.index") }}">To-do list</a>
                             </li>
                             <li class="nav-item px-md-2">
                                 <a class="nav-link fw-semibold {{ Request::routeIs("blog.index") ? "active" : "" }}" href="{{ route("blog.index") }}">Blog</a>
-                            </li>
+                            </li>  
                             <li class="nav-item px-md-2">
-                                <a class="nav-link fw-semibold {{ Request::routeIs("contact") ? "active" : "" }}" href="{{ route("contact") }}">Contact</a>
+                                <a class="nav-link fw-semibold" href="{{ route("logout") }}">Logout</a>
                             </li>
+                            @endauth
                         </ul>
                     </div>
                 </div>

@@ -9,6 +9,11 @@ class ContactController extends Controller
 {
     protected $validationRules = ["name" => "required", "email" => ["required", "email"], "message" => "required"];
 
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
     public function index(){
         return view('contact');
     }

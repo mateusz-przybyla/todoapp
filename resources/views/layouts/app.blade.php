@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield("title")</title>
 
@@ -19,18 +22,35 @@
             
                     <div class="collapse navbar-collapse justify-content-md-center" id="todo-navbar">
                         <ul class="navbar-nav">
+                            @guest
                             <li class="nav-item px-md-2">
-                                <a class="nav-link fw-semibold {{ Request::routeIs("home.index") ? "active" : "" }}" href="{{ route("home.index") }}">Home</a>
+                                <a class="nav-link fw-semibold {{ Request::routeIs("welcome") ? "active" : "" }}" href="{{ route("welcome") }}">Welcome</a>
+                            </li>
+                            <li class="nav-item px-md-2">
+                                <a class="nav-link fw-semibold {{ Request::routeIs("register") ? "active" : "" }}" href="{{ route("register") }}">Register</a>
+                            </li>
+                            <li class="nav-item px-md-2">
+                                <a class="nav-link fw-semibold {{ Request::routeIs("login") ? "active" : "" }}" href="{{ route("login") }}">Login</a>
+                            </li>
+                            <li class="nav-item px-md-2">
+                                <a class="nav-link fw-semibold {{ Request::routeIs("contact") ? "active" : "" }}" href="{{ route("contact") }}">Contact</a>
+                            </li>
+                            @endguest
+
+                            @auth
+                            <li class="nav-item px-md-2">
+                                <a class="nav-link fw-semibold {{ Request::routeIs("home") ? "active" : "" }}" href="{{ route("home") }}">Home</a>
                             </li>
                             <li class="nav-item px-md-2">
                                 <a class="nav-link fw-semibold {{ Request::routeIs("todoapp.index") ? "active" : "" }}" href="{{ route("todoapp.index") }}">To-do list</a>
                             </li>
                             <li class="nav-item px-md-2">
                                 <a class="nav-link fw-semibold {{ Request::routeIs("blog.index") ? "active" : "" }}" href="{{ route("blog.index") }}">Blog</a>
-                            </li>
+                            </li>  
                             <li class="nav-item px-md-2">
-                                <a class="nav-link fw-semibold {{ Request::routeIs("contact") ? "active" : "" }}" href="{{ route("contact") }}">Contact</a>
+                                <a class="nav-link fw-semibold" href="{{ route("logout") }}">Logout</a>
                             </li>
+                            @endauth
                         </ul>
                     </div>
                 </div>
@@ -39,9 +59,17 @@
     </header>
     <main class="pb-60">
         <div class="container">
+            @guest
             <div class="d-flex justify-content-center rounded my-3 brand-color fs-4 fw-bold">
                 To-Do App
             </div>
+            @endguest
+            @auth
+            <div class="d-md-flex rounded my-3 brand-color text-center justify-content-md-evenly">
+                <div class=" fs-4 fw-bold">To-Do App</div>
+                <div class="fs-4">Welcome: {{ Auth::user()->name }} !</div>
+            </div>
+            @endauth
             @yield("content")
         </div>
     </main>

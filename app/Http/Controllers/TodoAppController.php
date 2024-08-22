@@ -10,6 +10,11 @@ class TodoAppController extends Controller
 {
     protected $validationRules = ["content" => "required"];
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         return view('todoapp.index')->with("tasks", Task::all());

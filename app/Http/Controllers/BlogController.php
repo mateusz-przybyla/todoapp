@@ -10,6 +10,11 @@ class BlogController extends Controller
 {
     protected $validationRules = ["description" => "required", "post" => "required"];
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(){
         $posts = Post::latest()->paginate(3);
 

@@ -48,7 +48,14 @@
                                 <a class="nav-link fw-semibold {{ Request::routeIs("blog.index") ? "active" : "" }}" href="{{ route("blog.index") }}">Blog</a>
                             </li>  
                             <li class="nav-item px-md-2">
-                                <a class="nav-link fw-semibold" href="{{ route("logout") }}">Logout</a>
+                                <a class="nav-link fw-semibold" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+                                <form method="POST" action="{{ route('logout') }}" class="d-none" id="logout-form">
+                                    @csrf
+                                </form>
                             </li>
                             @endauth
                         </ul>

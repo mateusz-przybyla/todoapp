@@ -68,12 +68,12 @@
         <div class="container">
             @guest
             <div class="d-flex justify-content-center rounded my-3 brand-color fs-4 fw-bold">
-                To-Do App
+                {{ config('app.name') }}
             </div>
             @endguest
             @auth
             <div class="d-md-flex rounded my-3 brand-color text-center justify-content-md-evenly">
-                <div class=" fs-4 fw-bold">To-Do App</div>
+                <div class=" fs-4 fw-bold">{{ config('app.name') }}</div>
                 <div class="fs-4">Welcome: {{ Auth::user()->name }} !</div>
             </div>
             @endauth

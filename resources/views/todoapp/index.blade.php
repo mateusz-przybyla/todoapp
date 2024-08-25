@@ -11,11 +11,13 @@
     <form method="POST" class="mb-3">
         @csrf
         <div class="d-flex gap-2">
-            <input type="text" name="content" placeholder="Enter a to-do item" class="form-control">
+            <input type="text" name="content" placeholder="Enter a to-do item" class="form-control @error('content') is-invalid @enderror" required>
             <input type="submit" value="Add" class="btn btn-primary">
         </div>
         @error("content")
-            <span class="error">{{ $message }}</span>
+            <span class="error">
+                <strong>{{ $message }}</strong>
+            </span>
         @enderror
     </form>
     

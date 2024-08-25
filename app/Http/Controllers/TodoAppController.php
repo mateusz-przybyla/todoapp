@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Task;
+use App\Models\{Task, User};
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\{Log, Auth};
 
 class TodoAppController extends Controller
 {
@@ -17,14 +17,17 @@ class TodoAppController extends Controller
 
     public function index()
     {
-        return view('todoapp.index')->with("tasks", Task::all());
+        return view('todoapp.index', [
+            'tasks' => Task::where('user_id', Auth::id())->get()
+        ]);
     }
 
-    public function store(Request $request, Task $task)
+    public function store(Request $request)
     {
         //Log::info($request);
 
         $validatedData = $request->validate($this->validationRules);
+        $validatedData['user_id'] = Auth::id();
 
         Task::create($validatedData);
 

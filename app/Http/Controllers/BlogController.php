@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\{Log, Auth};
 
 class BlogController extends Controller
 {
@@ -16,7 +16,7 @@ class BlogController extends Controller
     }
 
     public function index(){
-        $posts = Post::latest()->paginate(3);
+        $posts = Post::where('user_id', Auth::id())->latest()->paginate(3);
 
         return view('blog.index', compact('posts'));
     }
@@ -26,6 +26,7 @@ class BlogController extends Controller
         //Log::info($request);
 
         $validatedData = $request->validate($this->validationRules);
+        $validatedData['user_id'] = Auth::id();
 
         Post::create($validatedData);
 

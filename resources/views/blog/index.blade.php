@@ -7,23 +7,27 @@
 		@csrf
 		<div class="mb-2">
 			<label for="post" class="form-label mb-0">New entry title</label>
-			<input type="text" name="description" class="form-control" id="description" placeholder="Title">
+			<input type="text" name="description" class="form-control @error('description') is-invalid @enderror" id="description" placeholder="Title">
 			@error("description")
-				<span class="error">{{ $message }}</span>
+				<span class="error">
+					<strong>{{ $message }}</strong>
+				</span>
 			@enderror
 		</div>
 		<div class="mb-3">
 			<label for="post" class="form-label mb-0">Post</label>
-			<textarea name="post" class="form-control" id="post" rows="3" placeholder="..."></textarea>
+			<textarea name="post" class="form-control @error('post') is-invalid @enderror" id="post" rows="3" placeholder="..."></textarea>
 			@error("post")
-				<span class="error">{{ $message }}</span>
+				<span class="error">
+					<strong>{{ $message }}</strong>
+				</span>
 			@enderror
 		</div>
 		<button class="btn btn-primary" type="submit">Add new entry</button>
 	</form>
 </div>
 <div class="d-flex flex-column justify-content-center align-items-center rounded main-color py-5 mb-1">
-	<ul class="list-group col-10 col-md-8">
+	<ul class="list-group col-10 col-md-8 mb-4">
         <p class="mb-1">Recent entries:</p>
         @foreach ($posts as $post)
 			<li class="list-group-item rounded mb-1">
@@ -41,7 +45,7 @@
 			</li>
         @endforeach
     </ul>
-
 	{{ $posts->links() }}
+
 </div>
 @endsection

@@ -11,63 +11,67 @@
     <form method="POST" class="mb-3">
         @csrf
         <div class="d-flex gap-2">
-            <input type="text" name="content" placeholder="Enter a to-do item" class="form-control">
+            <input type="text" name="content" placeholder="Enter a to-do item" class="form-control @error('content') is-invalid @enderror" required>
             <input type="submit" value="Add" class="btn btn-primary">
         </div>
         @error("content")
-            <span class="error">{{ $message }}</span>
+            <span class="error">
+                <strong>{{ $message }}</strong>
+            </span>
         @enderror
     </form>
     
     <ul class="list-group col-10 col-md-8 mb-4">
         <p class="mb-1">Uncompleted tasks:</p>
-        @foreach ($tasks as $task)
-            @if ($task->completed === 0)
-                <li class="list-group-item rounded">
-                    <form method="POST" action="{{ route("todoapp.update", $task->id) }}" class="d-flex gap-2">
-                        @csrf
-                        @method("PUT")
-                        <input type="text" name="content" value="{{ $task->content }}" class="form-control">
-                        <button type="submit" class="btn btn-warning">Edit</button>
-                    </form>
+        @foreach ($uncompletedTasks as $uncompletedTask)
+            <li class="list-group-item rounded">
+                <p class="fs-6 my-1 fst-italic">{{ $uncompletedTask->created_at }}</p>
+                
+                <form method="POST" action="{{ route("todoapp.update", $uncompletedTask->id) }}" class="d-flex gap-2">
+                    @csrf
+                    @method("PUT")
+                    <input type="text" name="content" value="{{ $uncompletedTask->content }}" class="form-control">
+                    <button type="submit" class="btn btn-warning">Edit</button>
+                </form>
 
-                    <div class="d-flex my-2">
-                        <form method="POST" action="{{ route("todoapp.destroy", $task->id) }}" class="me-2">
-                            @csrf
-                            @method("DELETE")
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-
-                        <form method="POST" action="{{ route("todoapp.complete", $task->id) }}" class="me-2">
-                            @csrf
-                            @method("PUT")
-                            <button type="submit" class="btn btn-success">Done</button>
-                        </form>
-                    </div>
-                </li>
-            @endif
-        @endforeach
-    </ul>
-
-    <ul class="list-group col-10 col-md-8">
-        <p class="mb-1">Completed tasks:</p>
-        @foreach ($tasks as $task)
-            @if ($task->completed === 1)
-                <li class="list-group-item rounded">
-                    <form method="POST" action="{{ route("todoapp.update", $task->id) }}" class="d-flex gap-2">
-                        @csrf
-                        @method("PUT")
-                        <input type="text" name="content" value="{{ $task->content }}" class="form-control">
-                        <button type="submit" class="btn btn-warning">Edit</button>
-                    </form>
-
-                    <form method="POST" action="{{ route("todoapp.destroy", $task->id) }}" class="me-2 my-2">
+                <div class="d-flex my-2">
+                    <form method="POST" action="{{ route("todoapp.destroy", $uncompletedTask->id) }}" class="me-2">
                         @csrf
                         @method("DELETE")
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
-                </li>
-            @endif
+
+                    <form method="POST" action="{{ route("todoapp.complete", $uncompletedTask->id) }}" class="me-2">
+                        @csrf
+                        @method("PUT")
+                        <button type="submit" class="btn btn-success">Done</button>
+                    </form>
+                </div>
+            </li>
         @endforeach
     </ul>
+    {{ $uncompletedTasks->links() }}
+
+    <ul class="list-group col-10 col-md-8 mb-4">
+        <p class="mb-1">Completed tasks:</p>
+        @foreach ($completedTasks as $completedTask)
+            <li class="list-group-item rounded">
+                <p class="fs-6 my-1 fst-italic">{{ $completedTask->created_at }}</p>
+
+                <form method="POST" action="{{ route("todoapp.update", $completedTask->id) }}" class="d-flex gap-2">
+                    @csrf
+                    @method("PUT")
+                    <input type="text" name="content" value="{{ $completedTask->content }}" class="form-control">
+                    <button type="submit" class="btn btn-warning">Edit</button>
+                </form>
+
+                <form method="POST" action="{{ route("todoapp.destroy", $completedTask->id) }}" class="me-2 my-2">
+                    @csrf
+                    @method("DELETE")
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </li>
+        @endforeach
+    </ul>
+    {{ $completedTasks->links() }}
 @endsection

@@ -17,9 +17,10 @@ class TodoAppController extends Controller
 
     public function index()
     {
-        return view('todoapp.index', [
-            'tasks' => Task::where('user_id', Auth::id())->get()
-        ]);
+        $uncompletedTasks = Task::where('user_id', Auth::id())->where('completed', 0)->paginate(5, ['*'], 'uncompletedTasks');
+        $completedTasks = Task::where('user_id', Auth::id())->where('completed', 1)->paginate(5, ['*'], 'completedTasks');
+
+        return view('todoapp.index')->with(compact('uncompletedTasks','completedTasks'));
     }
 
     public function store(Request $request)

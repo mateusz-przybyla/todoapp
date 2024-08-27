@@ -42,7 +42,7 @@
                                 <a class="nav-link fw-semibold {{ Request::routeIs("home") ? "active" : "" }}" href="{{ route("home") }}">Home</a>
                             </li>
                             <li class="nav-item px-md-2">
-                                <a class="nav-link fw-semibold {{ Request::routeIs("todoapp.index") ? "active" : "" }}" href="{{ route("todoapp.index") }}">To-do list</a>
+                                <a class="nav-link fw-semibold {{ Request::routeIs("todoapp.index") ? "active" : "" }} {{ Request::routeIs("todoapp.create") ? "active" : "" }}" href="{{ route("todoapp.index") }}">To-do list</a>
                             </li>
                             <li class="nav-item px-md-2">
                                 <a class="nav-link fw-semibold {{ Request::routeIs("blog.index") ? "active" : "" }}" href="{{ route("blog.index") }}">Blog</a>

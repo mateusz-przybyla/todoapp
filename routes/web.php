@@ -18,7 +18,10 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('todoapp')->name('todoapp.')->controller(TodoAppController::class)->group(function(){
     Route::get('/', "index")->name("index");
-    Route::post('/', "store")->name("store");
+
+    Route::get('/create', "create")->name("create");
+    Route::post('/create', "store")->name("store");
+    
     Route::delete('/{task}', "destroy")->middleware(LogIP::class)->name("destroy");
     Route::put('/update/{task}', "update")->name("update");
     Route::put('/complete/{task}', "complete")->name("complete");

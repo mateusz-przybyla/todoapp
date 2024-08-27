@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\{Log, Auth};
 
 class TodoAppController extends Controller
 {
-    protected $validationRules = ["content" => "required"];
+    protected $validationRules = ["content" => "required", "execution_date" => ["required", "date"]];
 
     public function __construct()
     {
@@ -21,6 +21,11 @@ class TodoAppController extends Controller
         $completedTasks = Task::where('user_id', Auth::id())->where('completed', 1)->paginate(5, ['*'], 'completedTasks');
 
         return view('todoapp.index')->with(compact('uncompletedTasks','completedTasks'));
+    }
+
+    public function create()
+    {
+        return view("todoapp.create");
     }
 
     public function store(Request $request)

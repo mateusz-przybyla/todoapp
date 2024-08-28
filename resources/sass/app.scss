@@ -44,3 +44,9 @@
 .error{
     color: red;
 }
+
+@media (min-width: 992px) {
+    .w-lg-25 {
+      width: 25% !important;
+    }
+}

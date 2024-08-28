@@ -40,6 +40,10 @@ class BlogController extends Controller
         return redirect()->route("blog.index");
     }
 
+    public function edit(Post $post){
+        return view("blog.edit", ["post" => $post]);
+    }
+
     public function update(Post $post, Request $request)
     {
         $validatedData = $request->validate($this->validationRules);

@@ -17,8 +17,8 @@ class TodoAppController extends Controller
 
     public function index()
     {
-        $uncompletedTasks = Task::where('user_id', Auth::id())->where('completed', 0)->paginate(5, ['*'], 'uncompletedTasks');
-        $completedTasks = Task::where('user_id', Auth::id())->where('completed', 1)->paginate(5, ['*'], 'completedTasks');
+        $uncompletedTasks = Task::where('user_id', Auth::id())->where('completed', 0)->orderBy('execution_date', 'asc')->paginate(5, ['*'], 'uncompletedTasks');
+        $completedTasks = Task::where('user_id', Auth::id())->where('completed', 1)->orderBy('execution_date', 'desc')->paginate(5, ['*'], 'completedTasks');
 
         return view('todoapp.index')->with(compact('uncompletedTasks','completedTasks'));
     }
@@ -49,6 +49,8 @@ class TodoAppController extends Controller
 
     public function update(Task $task, Request $request)
     {
+        Log::info($request);
+
         $validatedData = $request->validate($this->validationRules);
 
         $task->update($validatedData);

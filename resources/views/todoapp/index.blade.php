@@ -31,17 +31,17 @@
                 </form>
 
                 <div class="d-flex my-2">
-                    <form method="POST" action="{{ route("todoapp.destroy", $uncompletedTask->id) }}" class="me-2">
-                        @csrf
-                        @method("DELETE")
-
-                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                    </form>
-
                     <form method="POST" action="{{ route("todoapp.complete", $uncompletedTask->id) }}" class="me-2">
                         @csrf
                         @method("PUT")
                         <button type="submit" class="btn btn-success btn-sm">Done</button>
+                    </form>
+
+                    <form method="POST" action="{{ route("todoapp.destroy", $uncompletedTask->id) }}" class="">
+                        @csrf
+                        @method("DELETE")
+
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                     </form>
                 </div>
             </li>

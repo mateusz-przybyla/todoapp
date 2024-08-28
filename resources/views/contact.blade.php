@@ -16,7 +16,7 @@
         @csrf
         <div>
             <label for="name" class="mt-2">Name:</label><br>
-            <input type="text" id="name" name="name" class="form-control">
+            <input type="text" id="name" name="name" class="form-control" required autofocus>
         </div>
         @error("name")
             <span class="error">{{ $message }}</span>
@@ -24,7 +24,7 @@
 
         <div>
             <label for="email" class="mt-2">Email:</label><br>
-            <input type="text" id="email" name="email" class="form-control">
+            <input type="text" id="email" name="email" class="form-control" required>
         </div>
         @error("email")
             <span class="error">{{ $message }}</span>
@@ -32,7 +32,7 @@
 
         <div>
             <label for="message" class="mt-2">Message:</label><br>
-            <textarea id="message" name="message"  class="form-control"></textarea>
+            <textarea id="message" name="message" class="form-control" required></textarea>
         </div>
         @error("message")
             <span class="error">{{ $message }}</span>

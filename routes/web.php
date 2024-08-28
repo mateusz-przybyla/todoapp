@@ -22,13 +22,19 @@ Route::prefix('todoapp')->name('todoapp.')->controller(TodoAppController::class)
     Route::get('/create', "create")->name("create");
     Route::post('/create', "store")->name("store");
     
-    Route::delete('/{task}', "destroy")->middleware(LogIP::class)->name("destroy");
+    Route::delete('/delete/{task}', "destroy")->middleware(LogIP::class)->name("destroy");
+
     Route::put('/update/{task}', "update")->name("update");
+
     Route::put('/complete/{task}', "complete")->name("complete");
 });
 
 Route::prefix('blog')->name('blog.')->controller(BlogController::class)->group(function(){
     Route::get('/', "index")->name("index");
     Route::post('/', "store")->name("store");
-    Route::delete('/{post}', "destroy")->middleware(LogIP::class)->name("destroy");
+
+    Route::delete('/delete/{post}', "destroy")->middleware(LogIP::class)->name("destroy");
+
+    Route::get('/update/{post}', "edit")->name("edit");
+    Route::put('/update/{post}', "update")->name("update");
 });

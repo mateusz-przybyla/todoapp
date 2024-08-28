@@ -36,14 +36,34 @@
                         @method("PUT")
                         <button type="submit" class="btn btn-success btn-sm">Done</button>
                     </form>
-
-                    <form method="POST" action="{{ route("todoapp.destroy", $uncompletedTask->id) }}" class="">
-                        @csrf
-                        @method("DELETE")
-
-                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                    </form>
+                    <div class="">
+                        <button type="button" class="btn btn-danger btn-sm me-2" data-bs-toggle="modal" data-bs-target="#updateModal">Delete</button>
+                    </div>
                 </div>
+
+                <!-- Modal update -->
+				<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+					<div class="modal-content">
+						<form method="POST" action="{{ route("todoapp.destroy", $uncompletedTask->id) }}">
+							@csrf
+							@method("DELETE")
+
+							<div class="modal-header">
+								<h1 class="modal-title fs-5" id="updateModalLabel">Delete task</h1>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<p class="my-0">Are you sure want to delete?</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+								<button type="submit" class="btn btn-danger">Delete</button>
+							</div>
+						</form>
+					</div>
+				</div>
+				<!-- end Modal update -->
             </li>
         @endforeach
     </ul>
@@ -70,8 +90,32 @@
                     @csrf
                     @method("DELETE")
 
-                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    <button type="button" class="btn btn-danger btn-sm me-2" data-bs-toggle="modal" data-bs-target="#updateModal2">Delete</button>
                 </form>
+
+                <!-- Modal update 2 -->
+				<div class="modal fade" id="updateModal2" tabindex="-1" aria-labelledby="updateModal2Label" aria-hidden="true">
+					<div class="modal-dialog">
+					<div class="modal-content">
+						<form method="POST" action="{{ route("todoapp.destroy", $completedTask->id) }}">
+							@csrf
+							@method("DELETE")
+
+							<div class="modal-header">
+								<h1 class="modal-title fs-5" id="updateModal2Label">Delete task</h1>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<p class="my-0">Are you sure want to delete?</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+								<button type="submit" class="btn btn-danger">Delete</button>
+							</div>
+						</form>
+					</div>
+				</div>
+				<!-- end Modal update 2 -->
             </li>
         @endforeach
     </ul>

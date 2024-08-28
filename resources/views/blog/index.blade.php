@@ -38,15 +38,33 @@
 				<hr class="my-1">
 
 				<div class="d-flex my-2">
-					<form method="POST" action="{{ route("blog.destroy", $post->id) }}" class="me-2">
-						@csrf
-						@method("DELETE")
-						<button type="submit" class="btn btn-danger btn-sm">Delete</button>
-					</form>
-					<div class="">
-						<a class="btn btn-warning btn-sm" href="{{ route('blog.edit', $post->id) }}" role="button">Edit</a>
+					<button type="button" class="btn btn-danger btn-sm me-2" data-bs-toggle="modal" data-bs-target="#updateModal">Delete</button>
+					<a class="btn btn-warning btn-sm" href="{{ route('blog.edit', $post->id) }}" role="button">Edit</a>
+				</div>
+
+				<!-- Modal update -->
+				<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+					<div class="modal-content">
+						<form method="POST" action="{{ route("blog.destroy", $post->id) }}">
+							@csrf
+							@method("DELETE")
+
+							<div class="modal-header">
+								<h1 class="modal-title fs-5" id="updateModalLabel">Delete entry</h1>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<p class="my-0">Are you sure want to delete?</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+								<button type="submit" class="btn btn-danger">Delete</button>
+							</div>
+						</form>
 					</div>
 				</div>
+				<!-- end Modal update -->
 			</li>
         @endforeach
     </ul>

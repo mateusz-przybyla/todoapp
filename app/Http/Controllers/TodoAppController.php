@@ -49,6 +49,8 @@ class TodoAppController extends Controller
 
     public function update(Task $task, Request $request)
     {
+        Log::info($request);
+
         $validatedData = $request->validate($this->validationRules);
 
         $task->update($validatedData);
